@@ -23,7 +23,7 @@ var noteUri = function noteUri() {
 
   if (urlParams.has('note')) {
     var note = urlParams.get('note');
-    return "/notes/".concat(note, ".md");
+    return "/notes/html/".concat(note, ".html");
   }
 
   return false;
@@ -52,7 +52,7 @@ var request = function request(uri) {
   return new Request(uri, {
     method: 'GET',
     headers: new Headers({
-      'Accept': 'text/markdown'
+      'Accept': 'text/html'
     })
   });
 };

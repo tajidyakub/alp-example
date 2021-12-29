@@ -12,7 +12,7 @@ const noteUri = () => {
     
     if (urlParams.has('note')) {
             let note = urlParams.get('note')
-            return `/notes/${note}.md`    
+            return `/notes/html/${note}.html`    
         }
     return false
 }
@@ -40,7 +40,7 @@ const request = (uri) => {
     return new Request(uri, {
         method: 'GET',
         headers: new Headers({
-            'Accept': 'text/markdown'
+            'Accept': 'text/html'
         })
     })
 } 

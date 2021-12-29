@@ -31,9 +31,13 @@
             throw new Error('No note in the query string.')
         } else {
             // fetch
-            window.fetch(request)
+            window.fetch(request(uri))
                 .then(res => res.text())
-                .then(data => console.log(data))
+                .then(data => {
+                    if (data) {
+                        noteContent.innerHTML = data
+                    }
+                })
                 .catch(err => console.error(err.message))
         }
 

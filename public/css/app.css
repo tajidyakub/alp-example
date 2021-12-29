@@ -563,7 +563,7 @@ h1, h2, h3, h4, h5, h6{
   font-family: Lato, sans-serif;
   --tw-text-opacity: 1;
   color: rgb(75 85 99 / var(--tw-text-opacity));
-  letter-spacing: -0.05em;
+  letter-spacing: -0.025em;
 }
 
 h1{
@@ -944,10 +944,6 @@ a{
 .prose > :where(:last-child):not(:where([class~="not-prose"] *)){
   margin-bottom: 0;
 }
-.mx-auto{
-  margin-left: auto;
-  margin-right: auto;
-}
 .mx-4{
   margin-left: 1rem;
   margin-right: 1rem;
@@ -955,6 +951,10 @@ a{
 .my-auto{
   margin-top: auto;
   margin-bottom: auto;
+}
+.mx-auto{
+  margin-left: auto;
+  margin-right: auto;
 }
 .my-12{
   margin-top: 3rem;
@@ -964,11 +964,11 @@ a{
   margin-left: 0.25rem;
   margin-right: 0.25rem;
 }
-.mt-10{
-  margin-top: 2.5rem;
-}
 .ml-8{
   margin-left: 2rem;
+}
+.mt-10{
+  margin-top: 2.5rem;
 }
 .ml-10{
   margin-left: 2.5rem;
@@ -994,11 +994,11 @@ a{
 .h-\[3\.6rem\]{
   height: 3.6rem;
 }
-.w-\[32rem\]{
-  width: 32rem;
-}
 .w-screen{
   width: 100vw;
+}
+.w-\[40rem\]{
+  width: 40rem;
 }
 .w-\[80\%\]{
   width: 80%;
@@ -1011,6 +1011,9 @@ a{
 }
 .max-w-\[20rem\]{
   max-width: 20rem;
+}
+.resize{
+  resize: both;
 }
 .flex-row{
   flex-direction: row;

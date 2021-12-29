@@ -1,3 +1,10 @@
+/**
+ * This file is manually executed from the command line.
+ * It list the files in ./src/notes/, get each's markdown text
+ * convert to html and store them in ./src/notes/html.
+ *
+ */
+
 const fs = require('fs')
 const { basename } = require('path')
 const path = require('path')
