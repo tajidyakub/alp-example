@@ -1,0 +1,23 @@
+`# Search Box<br /><blockquote>Search modal, put a full screen overlay behind it. Sharing state between elements via dispatching event.</blockquote><h2>What is it</h2><ul><li>A search button in the navbar will open a blocking search modal when clicked.</li><li>The main page will be blocked with an absolute overlay <code>div</code>.</li><li><code>showoverlay</code> event will be dispatch when search buttton is clicked and <code>hideoverlay</code> dispatched when the close button click.</li></ul><h2>Inside the Search Box element</h2><ul><li>Search Box is basically a <code>div</code> with <code>absolute</code> position hidden somewhere in the DOM, this can be achieved using <code>x-show</code> directive of the element. As shown in the code below, the data component is initialized with <code>x-data</code> directive of the Search Box element, and it will be modified by the event listener added to the element through <code>x-on:showsearchbox</code> <code>.window</code> is added since it will be listening for bubbling event from window object.</li></ul><br /><pre class="code html"><code class="language-html">&lt;div
+    id=&quot;searchBox&quot;
+    x-data=&quot;{ show: false, search: '', searchNow(){}}&quot;
+    x-on:showsearchbox.window=&quot;show = true&quot;
+    x-on:closesearchbox=&quot;show = false&quot;
+    x-on:closesearchbox=&quot;$dispatch('hideoverlay')&quot;&gt;
+    &lt;button
+        x-on:click=&quot;$dispatch('closesearchbox')&quot;&gt;close&lt;/button&gt;
+    &lt;form id=&quot;searchForm&quot;&gt;
+        &lt;input
+            x-on:keyup.enter=&quot;searchNow&quot; 
+            x-show=&quot;show&quot; type=&quot;text&quot; x-modal=&quot;search&quot; placeholder=&quot;Search&quot;&gt;
+    &lt;/form&gt;
+&lt;/div&gt;</code></pre><br /><ul><li>Pairing the search box, there is a hidden overlay <code>div</code> also with <code>absolute</code> positioning with lower <code>z-index</code> which will appear at the same time with the Search Box listening to event <code>showoverlay</code>.</li><li>Html <code>body</code> tag also listen to event <code>showoverlay</code> and put <code>overflow: hidden</code> style when it happens. The listener on <code>body</code> will be using vanilla js in the script section of the html page.</li></ul>
+<pre class="code html"><code class="language-html">&lt;script&gt;
+    document.getElementsByTagName('body')[0].addEventListener('showoverlay', () =&gt; {
+            document.getElementsByTagName('body')[0].style.overflow = 'hidden'
+        })
+        document.getElementsByTagName('body')[0].addEventListener('hideoverlay', () =&gt; {
+            document.getElementsByTagName('body')[0].style.overflow = 'auto'
+        })
+&lt;/script&gt;</code></pre><ul><li>There is a close button in the Search Box which will fired <code>hideoverlay</code> when clicked. The triggered event will revert back all the element changes executed earlier.</li></ul><h2>Directives used</h2><ul><li><code>x-show</code>, put a hidden attribute on an element and set it to false when the condition value changer.</li><li><code>x-model</code>, bind an input field with data component value of the element.</li><li><code>x-transition</code>, implement simple transition while transitioning between <code>x-show=true</code> and <code>x-show=false</code>.</li><li><code>$dispatch</code>, dispatch a custom event from an alpinejs element.</li><li><code>x-on:eventname</code>, bind an event listener to the element, it will listen to the event <code>eventname</code>.</li></ul>
+`
