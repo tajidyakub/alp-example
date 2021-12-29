@@ -1,0 +1,59 @@
+<h1>Responsive Navbar</h1><blockquote>Control element's visibility based on viewPort width.</blockquote><h2>What it does</h2>Use the same <code>nav</code> element to serve as a navbar in the small width screen <code>&lt; 768px</code> and larger <code>&gt;=768px</code> by hiding most of its child element on the small screen.<br /><pre class="code html"><code class="language-html">&lt;!-- on the larger screen --&gt;
+&lt;nav&gt;
+    &lt;div&gt;Logo&lt;/div&gt;
+    &lt;div&gt;&lt;a href=&quot;#&quot;&gt;&lt;/a&gt;...&lt;/div&gt;
+    &lt;div&gt;Search form&lt;/div&gt;
+    &lt;div&gt;Logout Button&lt;/div&gt;
+&lt;/nav&gt;
+&lt;!-- on the small screen --&gt;
+&lt;nav&gt;
+    &lt;div&gt;Logo&lt;/div&gt;
+    &lt;div&gt;Menu Button&lt;/div&gt;
+&lt;/nav&gt;</code></pre><h2>What do we need</h2><ul><li>It needs to know the width of the viewport at any given time, <code>window</code> property <code>window.innerWidth</code> hold that value.</li><li>It needs to know when (if) the width changes to adjust our navbar accordingly, this can be done by listening to event resize on the <code>window</code> element.</li></ul><br /><pre class="code javascript"><code class="language-javascript">window.addEventListener('resize', (ev) =&gt; {
+    // executed when resize event triggerred.
+})</code></pre><ul><li>It needs to hide and show certain elements based on the viewport width. For this purpose we are going to use <code>x-show</code> attribute which assigned to check on a data value. The data component will be defined seperate from the componennt through <code>Alpine.data())</code>.</li></ul><br /><pre class="code html"><code class="language-html">&lt;!-- navbar element --&gt;
+&lt;nav x-data&gt;
+    &lt;div&gt;Logo&lt;/div&gt;
+    &lt;div x-show=&quot;fullNav&quot;&gt;&lt;a href=&quot;#&quot;&gt;&lt;/a&gt;...&lt;/div&gt;
+    &lt;div x-show=&quot;fullNav&quot;&gt;Search form&lt;/div&gt;
+    &lt;div x-show=&quot;fullNav&quot;&gt;Logout Button&lt;/div&gt;
+    &lt;div x-show=&quot;!fullNav&quot;&gt;Button Menubar&lt;/div&gt;
+&lt;/nav&gt;</code></pre>
+<pre class="code javascript"><code class="language-javascript">// data component property
+{
+    fullNav: true,
+    vpWidth: 0,
+    breakPoint: 768
+}</code></pre><br /><ul><li>It needs to able to change the value of the data property <code>fullNav</code> when a <code>resize</code> event occured and the viewport width is passing the break point of <code>768px</code>, for this we will have to provide a data method inside the data component which will toggle <code>fullNav</code>.</li></ul><br /><ul><li>It needs to define the initial value of each property, this will be done from the init() method inside the data component.</li></ul><br /><pre class="code javascript"><code class="language-javascript">// data component property
+{
+    init() {
+        this.vpWidth = window.innerWidth
+        this.toggleNav()
+    },
+    fullNav: true,
+    vpWidth: 0,
+    breakPoint: 768
+
+    toggleNav() {
+        if (this.vpWidth &gt;= this.breakPoint)
+        {
+            if (!this.fullNav) {
+                this.fullNav = true
+            }   
+        } else {
+            if (this.fullNav) {
+                this.fullNav = false
+            }   
+        }
+    },
+}</code></pre><h2>Data component</h2>The data component holds a crucial part of this element. We will install <code>resize</code> eventListener on the alpine element using <code>x-on</code> with <code>.window</code>  <code>&lt;nav x-on:resize.window=&quot;toggleNav&quot; &gt;</code>.<br />Assign <code>x-data</code> of the <code>nav</code> element to the data component name and be sure to define the data component during <code>alpine:init</code> event. Check the full html in the example.<br /><pre class="code html"><code class="language-html">&lt;nav x-data=&quot;navbar&quot;&gt;....&lt;/nav&gt;
+
+&lt;script&gt;
+    document.addEventListener('alpine:init', () =&gt; {
+        Alpine.data('navbar', () =&gt; ({
+            init() {},
+            fullNav: true,
+            ...
+        })))
+    })
+&lt;/script&gt;</code></pre>
