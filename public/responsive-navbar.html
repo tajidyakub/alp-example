@@ -60,13 +60,11 @@
                 toggleNav() {
                     this.width = window.innerWidth
                     if (this.width >= this.break) {
-                        console.log('condition a', this.showfullNav, this.showfullNav == false)
                         if (this.showfullNav === false) {
                             this.showfullNav = true
                         }   
                     }
                     if (this.width < this.break) {
-                        console.log('condition b', this.showfullNav, this.showfullNav == true)
                         if (this.showfullNav == true) {
                             this.showfullNav = false
                         }   
