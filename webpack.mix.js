@@ -6,3 +6,4 @@ mix.js('./src/js/app.js', './public/js')
         require('autoprefixer'),
         require('tailwindcss'),
     ])
+    .copyDirectory('./src/notes', './public/notes')

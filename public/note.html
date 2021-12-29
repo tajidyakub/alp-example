@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Note</title>
+    <script src="/js/alp.js" defer></script>
+    <link rel="stylesheet" href="/css/app.css">
+</head>
+<body>
+    <nav class="w-screen h-[3.2rem] flex flex-row justify-items-start bg-red-700">
+        <h3 class="mx-4 my-auto text-purple-50">Alpine simple elements</h3>
+        <div class="my-auto ml-8">
+            <a href="/">Home</a>
+        </div> 
+    </nav>
+    <div
+        id="noteContent"
+        class="w-[80%] mx-auto my-12 prose">
+    </div>
+
+    <script src="/js/app.js"></script>
+    <script>
+        const showMessage = (msg) => noteContent.innerHTML = msg
+        const noteContent = document.getElementById('noteContent')
+        const uri = noteUri()
+
+        if (!uri) {
+            showMessage(`<p class="text-red-500">Something went wrong, please try again.</p>`)
+            throw new Error('No note in the query string.')
+        } else {
+            // fetch
+            window.fetch(request)
+                .then(res => res.text())
+                .then(data => console.log(data))
+                .catch(err => console.error(err.message))
+        }
+
+    </script>
+</body>
+</html>
