@@ -1015,6 +1015,9 @@ a{
 .mt-6{
   margin-top: 1.5rem;
 }
+.mt-12{
+  margin-top: 3rem;
+}
 .flex{
   display: flex;
 }
@@ -1047,6 +1050,9 @@ a{
 }
 .w-full{
   width: 100%;
+}
+.w-60{
+  width: 15rem;
 }
 .max-w-\[20rem\]{
   max-width: 20rem;
@@ -1151,6 +1157,13 @@ a{
 .text-pink-600{
   --tw-text-opacity: 1;
   color: rgb(219 39 119 / var(--tw-text-opacity));
+}
+.transition{
+  transition-property: color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
 }
 
 [x-cloak] { 
