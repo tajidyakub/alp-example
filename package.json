@@ -1,0 +1,31 @@
+{
+  "name": "tj-alp-example",
+  "version": "1.0.0",
+  "description": "Simple alpinejs example element implementation",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run start\" \"npm run watch\"",
+    "start": "http-server -p 9988 public/ -c-1",
+    "watch": "npx mix watch",
+    "build": "npx mix",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "alpinejs",
+    "taildwindcss",
+    "element"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@tailwindcss/forms": "^0.4.0",
+    "@tailwindcss/typography": "^0.5.0",
+    "alpinejs": "^3.7.1",
+    "autoprefixer": "^10.4.0",
+    "concurrently": "^6.5.1",
+    "http-server": "^14.0.0",
+    "laravel-mix": "^6.0.39",
+    "postcss": "^8.4.5",
+    "tailwindcss": "^3.0.8"
+  }
+}

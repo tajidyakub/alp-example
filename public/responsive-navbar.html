@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alpinejs simple elements</title>
+    <script src="/js/alp.js" defer></script>
+    <link rel="stylesheet" href="/css/app.css">
+</head>
+<body>
+    <nav
+        x-on:resize.window="toggleNav"
+        x-data="navbar"
+        class="w-screen h-[3.6rem] bg-purple-800 text-white flex flex-row justify-between md:justify-items-start">
+        <h3 class="text-white my-auto mx-4">Navbar</h3>
+        <div
+            x-transition.opacity 
+            x-show="showfullNav" class="my-auto ml-10 mr-2">
+            <a href="#" class="mx-1">Home</a>
+            <a href="#" class="mx-1">Documentation</a>
+            <a href="#" class="mx-1">About</a>
+            <a href="#" class="mx-1">Contact</a>
+            <a href="#" class="mx-1">Opensource</a>
+        </div>
+        <div
+            x-transition.opacity 
+            x-show="showfullNav" class="ml-auto mr-2 w-[18rem] my-auto">
+            <input type="text" name="search" placeholder="Search.." class="w-full py-1 text-pink-600">
+        </div>
+        <div x-transition.opacity
+            x-show="showfullNav" class="mr-2 ml-4 my-auto">
+            <button class="bg-pink-600 text-white px-4 py-1">Logout</button>
+        </div>
+        <div x-transition.opacity
+            x-show="!showfullNav" class="mr-4 my-auto">
+            <button class="bg-pink-600 text-white px-4 py-1">Menu</button>
+        </div>
+    </nav>
+
+    <div
+        x-data="navbar" 
+        x-on:resize.window="toggleNav"
+        class="max-w-[20rem] mx-auto mt-10 p-6 bg-gray-800 text-white font-source-code text-[.9rem]">
+        Viewport Width = <span class="font-bold" x-text="width"></span>
+    </div>
+    
+    <script src="/js/app.js"></script>
+    <script>
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('navbar', () => ({
+                init() {
+                    this.toggleNav()
+                },
+
+                break: 1024,
+                width: 0,
+                showfullNav: true,
+                
+                toggleNav() {
+                    this.width = window.innerWidth
+                    if (this.width >= this.break) {
+                        console.log('condition a', this.showfullNav, this.showfullNav == false)
+                        if (this.showfullNav === false) {
+                            this.showfullNav = true
+                        }   
+                    }
+                    if (this.width < this.break) {
+                        console.log('condition b', this.showfullNav, this.showfullNav == true)
+                        if (this.showfullNav == true) {
+                            this.showfullNav = false
+                        }   
+                    }
+                    
+                },
+            }))
+        })
+    </script>
+</body>
+</html>
