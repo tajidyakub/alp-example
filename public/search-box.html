@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Box | Alpinejs</title>
+    <script src="/js/alp.js" defer></script>
+    <link rel="stylesheet" href="/css/app.css">
+</head>
+<body>
+    <nav class="w-screen h-[3.6rem] bg-purple-800 text-white flex flex-row justify-between md:justify-items-start">
+        <h3 class="text-white my-auto mx-4">Navbar</h3>
+        <div
+            x-data
+            class="mr-4 my-auto">
+            <button
+                x-on:click="() => {
+                    $dispatch('showoverlay') 
+                    $dispatch('showsearchbox')}"
+                class="bg-orange-600 text-white px-4 py-1">Search</button>
+        </div>
+        <div class="mr-4 my-auto">
+            <button class="bg-pink-600 text-white px-4 py-1">Menu</button>
+        </div>
+    </nav>
+    <div 
+        x-data="{show:false, search: ''}"
+        x-cloak
+        x-transition.opacity
+        x-show="show"
+        x-on:showsearchbox.window="show=true"
+        x-on:closesearchbox.window="show=false"
+        class="absolute z-[2000] w-screen bg-transparent left-0 top-[30%]">
+        
+        <div 
+            class="relative bg-white p-6 w-[40rem] h-[8rem] mx-auto">
+            <button 
+                x-on:click="() => {
+                    $dispatch('hideoverlay')
+                    show=false
+                }"
+                type="button"
+                class="absolute top-0 right-0 bg-purple-700 text-white font-semibold text-xs px-3 py-2 m-1">Close</button>
+            <input 
+                placeholder="Search"
+                type="text" class="mt-6 px-2 py-2 my-auto mx-auto w-full" x-model="search">
+        </div>
+    </div>
+    <div
+        x-cloak
+        x-data="{show: false}"
+        x-show="show"
+        x-transition.opacity
+        x-on:showoverlay.window="show=true"
+        x-on:hideoverlay.window="show=false"   
+        class="top-0 left-0 w-screen h-screen bg-[rgba(0,0,0,.8)] absolute z-[1000]">
+    </div>
+    
+    <script src="/js/app.js"></script>
+    <script>
+        document.getElementsByTagName('body')[0].addEventListener('showoverlay', () => {
+            document.getElementsByTagName('body')[0].style.overflow = 'hidden'
+        })
+        document.getElementsByTagName('body')[0].addEventListener('hideoverlay', () => {
+            document.getElementsByTagName('body')[0].style.overflow = 'auto'
+        })
+    </script>
+</body>
+</html>

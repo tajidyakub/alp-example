@@ -15,17 +15,12 @@ If modifications made to the files inside `src/` it will reflect to the final el
 
 Use `npm run dev` to concurrently execute `npm run watch` and `npm run start`.
 
-## Play with the elements
-
-
-
-- `npx mix` one time assets building
-- `npx mix watch` to build the assets and watch changes for automatoc rebuilding.
 
 ## Parts
 
 - `src`, it will have `css/` and `js/` source files of css and javascript.
 - `public`, the root path of web server to access the element.
+- `src/notes/` markdown files, notes for the element
 - `src/js/app.js` general javascript file
 - `src/js/alp.js` import `alpinejs` and some additional files (such as store) if any.
 - `webpack.mix.js` `laravel-mix` configuration file.
@@ -54,6 +49,7 @@ Some notes on some of the examples are accessible in the public path, created fr
 ## Elements
 
 - **Responsive Navbar**, a navbar that adjust its child elements and styles based on viewport width. 
+- **Search Box**, modal kind search form which set overlay div on the main page, state between element shared through event.
 
 ## References
 
